@@ -146,7 +146,7 @@ body::before{
   </main>
 </div>
 
-<script src="search_data.js"></script>
+<script src="search_content.js"></script>
 <script>
 // 构建二级分类索引
 var catMap = {};
@@ -227,7 +227,8 @@ function renderResults(results,query){
     if(r.images&&r.images.length>0){
       hi='<div class="images-label">参考图 ('+r.images.length+')</div><div class="images-grid">';
       r.images.forEach(function(img){
-        if(img.data_url) hi+='<img src="'+img.data_url+'" alt="'+img.name+'" loading="lazy" onclick="openLightbox(this.src);event.stopPropagation()">';
+        var imgName = typeof img === 'string' ? img : (img.name || '');
+        if(imgName) hi+='<img src="deploy_images/'+imgName+'" alt="'+imgName+'" loading="lazy" onclick="openLightbox(this.src);event.stopPropagation()">';
         else hi+='<div class="img-missing">缺失</div>';
       });
       hi+='</div>';
